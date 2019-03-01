@@ -10,8 +10,8 @@ class RegisterController extends Controller
     public function index(Request $request)
     {
     	$this->validate($request, [
-    		'name' => 'required',
-    		'email' => 'required'
+    		'email' => 'required',
+    		'password' => 'required'
     	]);
     }
 }

@@ -10,7 +10,6 @@
 
 		<!-- .form-group -->
 		<app-button type="submit">
-			<span v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
 			Sign Up
 		</app-button>
 		<!-- /.form-group -->
@@ -36,8 +35,7 @@ export default{
 	},
 	computed: {
 		...mapGetters({
-			validation: 'auth/getValidationErrors',
-			loading: 'auth/getLoading'
+			validation: 'getValidationErrors'
 		})
 	},
 	data(){

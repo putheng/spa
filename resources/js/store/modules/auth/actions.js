@@ -1,13 +1,12 @@
 import axios from 'axios'
 
 export const login = ({commit}, payload) => {
-	commit('setLoading')
-	return axios.post('http://renetslack.io/register', payload).then((response) => {
-		commit('clearLoading')
-	}).catch((error) => {
-		commit('setValidationErrors', {
-			type: 'login',
-			errors: error.response.data
-		})
+	commit('setLoading', '', {root:true})
+
+	return axios.post('http://renetslack.io/api/register', payload).then((response) => {
+		
+		commit('clearValidationErrors', '', {root:true})
+
+		return Promise.resolve(response)
 	})
 }

@@ -1,6 +1,7 @@
 
 import * as components from './components'
 import store from './store'
+import router from './router'
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -8,6 +9,7 @@ import store from './store'
  */
 
 require('./bootstrap');
+require('./interceptors');
 
 window.Vue = require('vue');
 
@@ -35,4 +37,5 @@ Object.keys(components).forEach((key) => {
 const app = new Vue({
     el: '#app',
     store,
+    router
 });
