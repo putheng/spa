@@ -2,8 +2,13 @@
 	<div class="form-group">
 		<button 
 			class="btn btn-lg btn-primary btn-block" 
-			:type="type">
-			<span v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+			:type="type"
+			v-bind="$attrs"
+			:disabled="loading"
+		>
+			<span v-if="loading" 
+				class="spinner-border spinner-border-sm"
+				role="status" aria-hidden="true"></span>
 			<slot/>
 		</button>
 	</div>

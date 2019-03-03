@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- End Required meta tags -->
 		<!-- Begin SEO tag -->
-		<title> Sign Up</title>
+		<title> Authenticates User </title>
 
 		<!-- Favicons -->
 		<link rel="shortcut icon" href="/images/favicon.ico">
@@ -23,7 +23,7 @@
 		</div>
 
 		<!-- Scripts -->
-		<script src="{{ asset('js/app.js') }}"></script>
+		<script src="{{ asset('js/app.js?v=2') }}"></script>
 		<script>
 			$(document).on('theme:init', () => {
 			  particlesJS.load('auth-header', '{{ asset('js/particles.json') }}');

@@ -1,10 +1,8 @@
 import axios from 'axios'
 
-export const login = ({commit}, payload) => {
+export const login = ({commit}, {endpoint, payload, method}) => {
 	commit('setLoading', '', {root:true})
-
-	return axios.post('http://renetslack.io/api/register', payload).then((response) => {
-		
+	return axios({ method: method, url: endpoint, data: payload }).then((response) => {
 		commit('clearValidationErrors', '', {root:true})
 		return Promise.resolve(response)
 	})

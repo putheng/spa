@@ -1,20 +1,11 @@
 <template>
 	<form class="auth-form" :action="action" :method="method" @submit.prevent="submit">
-		<!-- .form-group -->
 		{{ validation }}
-		<!-- .form-group -->
-		<app-input name="Email" type="email" v-model="form.email"></app-input>
-
-		<!-- .form-group -->
-		<app-input name="Pasword" type="password" v-model="form.password"></app-input>
-
-		<!-- .form-group -->
-		<app-button type="submit">
-			Sign Up
-		</app-button>
-		<!-- /.form-group -->
+		<ul>
+			<li v-for="(item, index) in children" :key="index">{{ item.type }}</li>
+		</ul>
+		{{ form }}
 		<slot/>
-		<!-- /recovery links -->
 	</form>
 </template>
 
@@ -41,18 +32,35 @@ export default{
 	data(){
 		return {
 			form: {
-				email: null,
-				password: null
-			}
+				email: "putheng",
+				password: 'password'
+			},
+			children: []
 		}
 	},
 	methods: {
 		submit(){
-			this.login(this.form)
+			
+			this.form = Object.keys(this.children).map((key) => {
+				return {
+					[this.children[key].inputName] : this.children[key].inputValue
+				}
+			})
+
+			console.log(this.form)
+
+			this.sendRequest({
+				endpoint: this.action,
+				payload: this.form,
+				method: this.method
+			})
 		},
 		...mapActions({
-			login: 'auth/login'
+			sendRequest: 'auth/login'
 		})
+	},
+	created(){
+		this.children = this.$children
 	}
 }
 </script>

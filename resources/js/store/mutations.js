@@ -3,6 +3,11 @@ export const setValidationErrors = (state, errors) => {
 	state.loading = false
 }
 
+export const setErrors = (state, errors) => {
+	state.error = errors
+	state.loading = false
+}
+
 export const clearValidationErrors = (state) => {
 	state.validation = []
 	state.loading = false
