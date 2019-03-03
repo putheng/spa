@@ -41,7 +41,6 @@
               <legend v-if="question.titleKh">{{ question.titleKh }}</legend>
               <!-- .form-group -->
               <p class="text-danger" v-if="error">{{ error }}</p>
-              <input type="text" :value="question.id" v-model="answerKh.question">
               <div class="form-group" v-for="(item, index) in answerKh.answers" :key="index">
                 <label class="d-flex justify-content-between" for="tfDefault">
                 <span>Answer </span>
