@@ -13,9 +13,11 @@ class UserTableSeeder extends Seeder
     public function run()
     {
         $value = [
-        	'name' => 'admin',
+        	'username' => 'admin',
         	'email' => 'admin@admin.com',
         	'password' => '$2y$10$WzRUjCpb5HLOehC.lRZkAeLdcuSDNc6Ou8QnlkhxbVn0XjK/XjAA6'
         ];
+
+        User::insert($value);
     }
 }
