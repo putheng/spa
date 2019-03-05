@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard\Question;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreQuestionRequest;
+use App\Http\Requests\UpdateAnswerRequest;
 use App\Http\Resources\QuestionResource;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -23,10 +24,14 @@ class CreateController extends Controller
     	return new QuestionResource($question);
     }
 
-    public function answer(Request $request)
+    public function answer(Request $request, Question $question)
     {
-    	$this->validate($request, [
-    		'answers.*.answer' => 'required'
-    	]);
+    	$question->load('answers');
+    	return view('questions.answer', compact('question'));
+    }
+
+    public function update(UpdateAnswerRequest $request)
+    {
+
     }
 }

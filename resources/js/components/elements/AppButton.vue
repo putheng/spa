@@ -20,8 +20,9 @@ import { mapGetters } from 'vuex'
 export default{
 	props: {
 		type: {
-			required: true,
-			type: String
+			required: false,
+			type: String,
+			default: 'button'
 		}
 	},
 	computed: {

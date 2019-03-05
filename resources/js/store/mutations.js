@@ -13,6 +13,10 @@ export const clearValidationErrors = (state) => {
 	state.loading = false
 }
 
+export const clearValidateFor = (state, error) => {
+	state.validation[error] = null
+}
+
 
 export const setLoading = (state) => {
 	state.loading = true

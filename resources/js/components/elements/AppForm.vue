@@ -1,10 +1,10 @@
 <template>
-	<form class="auth-form" :action="action" :method="method" @submit.prevent="submit">
-		{{ validation }}
-		<ul>
-			<li v-for="(item, index) in children" :key="index">{{ item.type }}</li>
-		</ul>
-		{{ form }}
+	<form 
+		class="auth-form"
+		:action="action"
+		:method="method"
+		@submit.prevent="submit"
+	>
 		<slot/>
 	</form>
 </template>
@@ -22,6 +22,15 @@ export default{
 			required: false,
 			type: String,
 			default: 'post'
+		},
+		redirect: {
+			required: true,
+			type: String
+		}
+	},
+	data(){
+		return {
+			form: {}
 		}
 	},
 	computed: {
@@ -29,38 +38,32 @@ export default{
 			validation: 'getValidationErrors'
 		})
 	},
-	data(){
-		return {
-			form: {
-				email: "putheng",
-				password: 'password'
-			},
-			children: []
-		}
-	},
 	methods: {
 		submit(){
-			
-			this.form = Object.keys(this.children).map((key) => {
-				return {
-					[this.children[key].inputName] : this.children[key].inputValue
-				}
+
+			const children = this.$children.filter((key, value) => {
+				return key.type !== 'submit'
 			})
 
-			console.log(this.form)
+			Object.keys(children).forEach((key) => {
+				if(typeof children[key].inputName !== 'undefined'){
+					this.form[children[key].inputName] = children[key].inputValue
+				}
+			})
 
 			this.sendRequest({
 				endpoint: this.action,
 				payload: this.form,
 				method: this.method
+			}).then((response) => {
+				if (response.data.success){
+					return window.location.href = this.redirect
+				}
 			})
 		},
 		...mapActions({
 			sendRequest: 'auth/login'
 		})
-	},
-	created(){
-		this.children = this.$children
 	}
 }
 </script>

@@ -1,7 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Hash;
+
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect()->route('auth.login');
 });
 
 // Auth::routes();
@@ -28,7 +30,8 @@ Route::group(['prefix' => 'dashboard', 'as' => 'dashboard.', 'namespace' => 'Das
 		Route::get('/create', 'CreateController@index')->name('create');
 		Route::post('/create', 'CreateController@store');
 
-		Route::post('/answer', 'CreateController@answer')->name('answer');
+		Route::get('/{question}/answer', 'CreateController@answer')->name('answer');
+		Route::post('/{question}/answer', 'CreateController@update');
 
 		Route::get('/add', 'UpdateController@update')->name('update');
 		Route::post('/add', 'UpdateController@store');

@@ -14,7 +14,7 @@
 			<!-- .card-body -->
 			<div class="card-body">
 				<!-- .form -->
-				<question-form action="{{ route('dashboard.question.create') }}"></question-form>
+				<answer :data="{{ $question->toJson() }}"></answer>
 				<!-- /.form -->
 			</div>
 			<!-- /.card-body -->

@@ -12,7 +12,14 @@
 			</p>
 		</header>
 		<!-- form -->
-		<login-form action="{{ route('auth.login') }}"></login-form>
+		<app-form action="{{ route('auth.login') }}" redirect="{{ route('dashboard.index') }}">
+
+			<app-input type="text" name="Email"></app-input>
+
+			<app-input type="password" name="Password"></app-input>
+
+			<app-button type="submit">Login</app-button>
+		</app-form>
 
 		<!-- /.auth-form -->
 		<!-- copyright -->
